@@ -34,23 +34,23 @@
             font-size: 7vw;
             font-weight: 900;
             text-transform: uppercase;
-            color: transparent;
-            background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
-            background-size: 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: none;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #ff00ff,
+                0 0 20px #ff00ff,
+                0 0 30px #ff00ff;
             transform-style: preserve-3d;
             animation: 
                 float 6s ease-in-out infinite, 
                 rotate3d 15s infinite linear,
-                gradientFlow 8s infinite,
                 pulse 3s infinite alternate;
             position: relative;
             margin-bottom: 50px;
             padding: 30px;
             z-index: 10;
             letter-spacing: 5px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 20px;
         }
         
         .text-3d::before {
@@ -65,7 +65,7 @@
             background-size: 400%;
             z-index: -1;
             border-radius: 30px;
-            filter: blur(30px);
+            filter: blur(20px);
             opacity: 0.8;
             animation: borderGlow 10s linear infinite;
             transform: translateZ(-50px);
@@ -74,16 +74,14 @@
         .subtext {
             font-size: 3vw;
             font-weight: 700;
-            color: #fff;
+            color: #00ffff;
             text-shadow: 
                 0 0 10px #00ffff, 
-                0 0 20px #00ffff,
-                0 0 30px #00ffff;
+                0 0 20px #00ffff;
             transform-style: preserve-3d;
             animation: 
                 float-sub 4s ease-in-out infinite, 
-                color-change 5s infinite alternate,
-                shake 0.5s infinite alternate;
+                color-change 5s infinite alternate;
             margin-top: 30px;
             padding: 15px 30px;
             background: rgba(0,0,0,0.7);
@@ -112,26 +110,10 @@
             100% { transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg); }
         }
         
-        @keyframes gradientFlow {
+        @keyframes borderGlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes borderGlow {
-            0% { 
-                background-position: 0% 50%; 
-                opacity: 0.8;
-            }
-            50% { 
-                background-position: 100% 50%; 
-                opacity: 1;
-                filter: blur(40px);
-            }
-            100% { 
-                background-position: 0% 50%; 
-                opacity: 0.8;
-            }
         }
         
         @keyframes color-change {
@@ -141,13 +123,8 @@
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
-        
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(5px); }
+            0% { transform: scale(1); text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; }
+            100% { transform: scale(1.05); text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
         }
         
         /* === PARTICLE SYSTEM === */
@@ -168,7 +145,7 @@
                 rgba(0,255,255,0.8) 50%, 
                 rgba(255,255,0,0.8) 100%);
             border-radius: 50%;
-            filter: blur(8px);
+            filter: blur(5px);
             animation: floatParticle linear infinite;
         }
         
@@ -184,19 +161,6 @@
                 opacity: 0; 
             }
         }
-        
-        /* === 3D LAYER EFFECT === */
-        .text-3d span {
-            display: inline-block;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: layerFloat 4s infinite ease-in-out;
-        }
-        
-        @keyframes layerFloat {
-            0%, 100% { transform: translateZ(0); }
-            50% { transform: translateZ(30px); }
-        }
     </style>
 </head>
 <body>
@@ -204,31 +168,7 @@
     
     <div class="scene">
         <h1 class="text-3d">
-            <span>Y</span>
-            <span>A</span>
-            <span>N</span>
-            <span>G</span>
-            <span> </span>
-            <span>M</span>
-            <span>U</span>
-            <span>L</span>
-            <span>L</span>
-            <span>E</span>
-            <span>T</span>
-            <span> </span>
-            <span>P</span>
-            <span>A</span>
-            <span>S</span>
-            <span>T</span>
-            <span>I</span>
-            <span> </span>
-            <span>K</span>
-            <span>E</span>
-            <span>P</span>
-            <span>E</span>
-            <span>L</span>
-            <span>E</span>
-            <span>T</span>
+            YANG MULLET PASTI KEPELET
         </h1>
         
         <div class="subtext">
@@ -239,7 +179,7 @@
     <script>
         // === ULTRA PARTICLE SYSTEM ===
         const particlesContainer = document.getElementById('particles');
-        const particleCount = 150;
+        const particleCount = 100;
         
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
@@ -271,29 +211,23 @@
         const subText = document.querySelector('.subtext');
         
         mainText.addEventListener('mouseenter', () => {
-            mainText.style.animation = 'float 2s ease-in-out infinite, rotate3d 5s infinite linear, gradientFlow 4s infinite, pulse 1s infinite alternate';
+            mainText.style.animation = 'float 2s ease-in-out infinite, rotate3d 5s infinite linear, pulse 1s infinite alternate';
             mainText.style.filter = 'brightness(1.5)';
         });
         
         mainText.addEventListener('mouseleave', () => {
-            mainText.style.animation = 'float 6s ease-in-out infinite, rotate3d 15s infinite linear, gradientFlow 8s infinite, pulse 3s infinite alternate';
+            mainText.style.animation = 'float 6s ease-in-out infinite, rotate3d 15s infinite linear, pulse 3s infinite alternate';
             mainText.style.filter = 'brightness(1)';
         });
         
         subText.addEventListener('mouseenter', () => {
-            subText.style.animation = 'float-sub 2s ease-in-out infinite, color-change 2s infinite alternate, shake 0.2s infinite alternate';
+            subText.style.animation = 'float-sub 2s ease-in-out infinite, color-change 2s infinite alternate';
             subText.style.transform = 'scale(1.2)';
         });
         
         subText.addEventListener('mouseleave', () => {
-            subText.style.animation = 'float-sub 4s ease-in-out infinite, color-change 5s infinite alternate, shake 0.5s infinite alternate';
+            subText.style.animation = 'float-sub 4s ease-in-out infinite, color-change 5s infinite alternate';
             subText.style.transform = 'scale(1)';
-        });
-        
-        // === 3D LETTER ANIMATION ===
-        const letters = document.querySelectorAll('.text-3d span');
-        letters.forEach((letter, index) => {
-            letter.style.animationDelay = `${index * 0.1}s`;
         });
     </script>
 </body>
